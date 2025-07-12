@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tableau de bord - Pharmacie</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="Bstyle.css">
+</head>
+
+<body>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="jimu-primary-loading"></div>
+  </div>
+
+  <!-- Menu principal -->
+  <div class="overlay" id="mainMenu">
+    <div class="welcome">BIENVENUE</div>
+    <div class="cubes">
+      <button class="menu-button" id="medBtn">
+        <i class="fas fa-pills"></i> Médicaments
+      </button>
+      <button class="menu-button " id="venteBtn"><i class="fas fa-shopping-cart"></i> Ventes</button>
+      <button class="menu-button" id="statBtn"><i class="fas fa-chart-bar"></i> Statistiques</button>
+      <button class="menu-button" id="comBtn"><i class="fas fa-warehouse"></i> Stock&nbsp;Commandes</button>
+      <button class="menu-button"><i class="fas fa-users-cog"></i> Utilisateurs</button>
+      <button class="menu-button logout" onclick="location.href='login.html'">
+        <i class="fas fa-sign-out-alt"></i> Déconnexion
+      </button>
+    </div>
+  </div>
+
+  <!-- Sous-menu Médicaments affiché devant -->
+  <div class="submenu-overlay" id="medSub">
+    <h2><i class="fas fa-pills"></i> Médicaments</h2>
+    <button class="submenu-button"><i class="fas fa-plus-circle"></i> Ajouter Médicament</button>
+    <button class="submenu-button"><i class="fas fa-list"></i> Liste Médicaments</button>
+    <button class="submenu-button"><i class="fas fa-folder-open"></i> Catégories</button>
+    <button class="back-button" id="backBtn">
+      <i class="fas fa-arrow-left"></i> Retour
+    </button>
+  </div>
+
+
+  <!-- Sous-menu Ventes -->
+  <div class="submenu-overlay" id="venteSub">
+    <h2><i class="fas fa-shopping-cart"></i> Ventes</h2>
+    <button class="submenu-button"><i class="fas fa-history"></i> Historiques de vente</button>
+    <button class="submenu-button"><i class="fas fa-chart-line"></i> Stat par semaine</button>
+    <button class="back-button" id="venteBackBtn">
+      <i class="fas fa-arrow-left"></i> Retour
+    </button>
+  </div>
+
+
+
+
+
+  <!-- statisrique -->
+  <!-- Sous-menu Statistiques -->
+  <div class="submenu-overlay" id="statSub">
+    <h2><i class="fas fa-chart-bar"></i> Statistiques</h2>
+    <button class="submenu-button"><i class="fas fa-chart-line"></i> Graphiques des ventes</button>
+    <button class="submenu-button"><i class="fas fa-capsules"></i> Statistiques des produits</button>
+    <button class="back-button" id="statbackBtn">
+      <i class="fas fa-arrow-left"></i> Retour
+    </button>
+  </div>
+
+  <!-- stock commande -->
+
+  <!-- Sous-menu pour la section Commandes -->
+  <div class="submenu-overlay" id="comSub">
+    <h2> <i class="fas fa-warehouse"></i>commandes</h2>
+    <button class="submenu-button"><i class="fas fa-list"></i> Liste des commandes</button>
+    <button class="submenu-button "><i class="fas fa-plus-circle"></i> Nouvelle commande</button>
+    <button class="submenu-button "><i class="fas fa-truck"></i> Fournisseurs</button>
+    <button class="submenu-button "><i class="fas fa-chart-bar"></i> Statistiques</button>
+    <button class="back-button" id="comBackBtn">
+      <i class="fas fa-arrow-left"></i> Retour
+    </button>
+  </div>
+
+
+
+
+  <!-- Script -->
+  <script src="Bmain.js">
+
+  </script>
+</body>
+
+</html>

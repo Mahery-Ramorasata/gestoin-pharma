@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Gestion de Pharmacie</title>
+  <link rel="stylesheet" href="mdp style.css">
+</head>
+
+<body>
+  <div class="DIBV">
+    <div class="slogan">
+      <div>LA SANTÉ AVANT TOUT</div>
+      <div class="copyright">copyright by MAELY</div>
+    </div>
+
+    <div class="granddiv">
+      <div class="slider" id="slider">
+        <!-- Connexion -->
+        <div class="panel">
+          <h2>Connexion</h2>
+          <div class="form-control">
+            <input type="text" required placeholder="Username">
+          </div>
+          <div class="form-control">
+            <input type="password" required placeholder="Motdepasse">
+          </div>
+          <p class="forgot" onclick="showRecovery()">Mot de passe oublié ?</p>
+          <div class="connexion">
+            <button>
+              <a href="../005 grand acceuil/Bindex.html"> 
+                Connexion
+              </a>
+            </button>
+          </div>
+        </div>
+
+        <!-- Récupération -->
+        <div class="panel">
+          <h2>Récupération</h2>
+          <div class="form-control">
+            <input type="email" required placeholder="Adresse e-mail">
+          </div>
+          <div class="login">
+            <button onclick="hideRecovery()">Envoyer</button>
+          </div>
+          <p class="back" onclick="hideRecovery()">← Retour à la connexion</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="mdp main.js"></script>
+</body>
+
+</html>
