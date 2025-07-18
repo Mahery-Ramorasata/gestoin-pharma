@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Graphique des Ventes</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0fdf4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      background-color: #2e8b57;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      color: white;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    canvas {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 15px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2><i class="fas fa-chart-area"></i> Graphique des Ventes (Mensuel)</h2>
+    <canvas id="venteChart" height="300"></canvas>
+    <a href="stat.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour aux Statistiques</a>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('venteChart').getContext('2d');
+
+    // Données simulées par mois (tu peux les relier plus tard à PHP/MySQL)
+    const mois = ['Jan', 'Fév', 'Mars', 'Avr', 'Mai', 'Juin', 'Juil'];
+    const ventes = [35000, 42000, 38000, 51000, 47000, 53000, 49000];
+
+    const chartVentes = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: mois,
+        datasets: [{
+          label: 'Ventes mensuelles (Ar)',
+          data: ventes,
+          borderColor: '#006400',
+          backgroundColor: 'rgba(0, 100, 0, 0.2)',
+          borderWidth: 2,
+          fill: true,
+          tension: 0.3,
+          pointBackgroundColor: '#006400',
+          pointRadius: 5
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { color: '#000' }
+          },
+          x: {
+            ticks: { color: '#000' }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: { color: '#fff' }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

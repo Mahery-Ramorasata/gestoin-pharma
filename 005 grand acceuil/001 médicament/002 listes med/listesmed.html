@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liste des Médicaments</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0fdf4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 95%;
+      margin: 40px auto;
+      background-color: #2e8b57;
+      padding: 25px;
+      border-radius: 20px;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      color: black;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #006400;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .actions i {
+      cursor: pointer;
+      margin: 0 5px;
+    }
+
+    .actions .fa-edit {
+      color: #2e8b57;
+    }
+
+    .actions .fa-trash {
+      color: red;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2><i class="fas fa-list"></i> Liste des Médicaments</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Catégorie</th>
+          <th>Prix (Ar)</th>
+          <th>Stock</th>
+          <th>Expiration</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="medTable">
+        <!-- Données générées en JS -->
+      </tbody>
+    </table>
+
+    <a href="medicaments.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour au menu Médicaments</a>
+  </div>
+
+  <script>
+    const medicaments = [
+      {
+        nom: "Paracétamol",
+        categorie: "Antalgique",
+        prix: 1500,
+        stock: 120,
+        expiration: "2025-12-31"
+      },
+      {
+        nom: "Amoxicilline",
+        categorie: "Antibiotique",
+        prix: 2500,
+        stock: 80,
+        expiration: "2025-06-20"
+      },
+      {
+        nom: "Vitamine C",
+        categorie: "Vitamines",
+        prix: 900,
+        stock: 200,
+        expiration: "2026-03-15"
+      }
+    ];
+
+    function chargerMedicaments() {
+      const table = document.getElementById("medTable");
+      medicaments.forEach((med, index) => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${med.nom}</td>
+          <td>${med.categorie}</td>
+          <td>${med.prix}</td>
+          <td>${med.stock}</td>
+          <td>${med.expiration}</td>
+          <td class="actions">
+            <i class="fas fa-edit" onclick="modifier(${index})"></i>
+            <i class="fas fa-trash" onclick="supprimer(${index})"></i>
+          </td>
+        `;
+
+        table.appendChild(row);
+      });
+    }
+
+    function modifier(index) {
+      alert("✏️ Modifier le médicament : " + medicaments[index].nom);
+    }
+
+    function supprimer(index) {
+      if (confirm("❌ Supprimer le médicament : " + medicaments[index].nom + " ?")) {
+        alert("Médicament supprimé (simulation)");
+        // Ici, on pourrait supprimer de la base de données
+      }
+    }
+
+    window.onload = chargerMedicaments;
+  </script>
+
+</body>
+</html>

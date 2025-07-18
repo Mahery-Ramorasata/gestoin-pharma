@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historique des Ventes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0fdf4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 95%;
+      margin: 40px auto;
+      background-color: #2e8b57;
+      padding: 25px;
+      border-radius: 20px;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .search-bar {
+      text-align: right;
+      margin-bottom: 15px;
+    }
+
+    .search-bar input {
+      padding: 8px;
+      border-radius: 10px;
+      border: none;
+      width: 200px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      color: black;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #006400;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2><i class="fas fa-clock-rotate-left"></i> Historique des Ventes</h2>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="🔍 Rechercher un médicament..." onkeyup="filtrerVentes()">
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Médicament</th>
+          <th>Client</th>
+          <th>Quantité</th>
+          <th>Prix Total (Ar)</th>
+        </tr>
+      </thead>
+      <tbody id="venteTable">
+        <!-- Données générées en JS -->
+      </tbody>
+    </table>
+
+    <a href="ventes.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour au menu Ventes</a>
+  </div>
+
+  <script>
+    const ventes = [
+      { date: "2025-07-10", medicament: "Paracétamol", client: "Rasolofoniaina", quantite: 2, total: 3000 },
+      { date: "2025-07-12", medicament: "Amoxicilline", client: "Rajaonarivelo", quantite: 1, total: 2500 },
+      { date: "2025-07-14", medicament: "Vitamine C", client: "Andriatsitohaina", quantite: 3, total: 2700 },
+      { date: "2025-07-15", medicament: "Paracétamol", client: "Rakotovao", quantite: 5, total: 7500 },
+    ];
+
+    function chargerHistorique() {
+      const table = document.getElementById("venteTable");
+      table.innerHTML = "";
+      ventes.forEach(v => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${v.date}</td>
+          <td>${v.medicament}</td>
+          <td>${v.client}</td>
+          <td>${v.quantite}</td>
+          <td>${v.total}</td>
+        `;
+        table.appendChild(row);
+      });
+    }
+
+    function filtrerVentes() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const lignes = document.querySelectorAll("#venteTable tr");
+      lignes.forEach(row => {
+        const nom = row.cells[1].textContent.toLowerCase();
+        row.style.display = nom.includes(input) ? "" : "none";
+      });
+    }
+
+    window.onload = chargerHistorique;
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Statistiques des Produits</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0fdf4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      background-color: #2e8b57;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      color: white;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    canvas {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 15px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2><i class="fas fa-box"></i> Statistiques des Produits</h2>
+    <canvas id="produitChart" height="350"></canvas>
+    <a href="stat.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour aux Statistiques</a>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('produitChart').getContext('2d');
+
+    const produits = ['Paracétamol', 'Doliprane', 'Amoxicilline', 'Vitamine C', 'Ibuprofène'];
+    const quantitesVendues = [220, 180, 150, 130, 90];
+
+    const barresCouleurs = quantitesVendues.map(qte => qte < 100 ? '#cc0000' : '#006400');
+
+    const chartProduits = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: produits,
+        datasets: [{
+          label: 'Quantité vendue',
+          data: quantitesVendues,
+          backgroundColor: barresCouleurs,
+          borderRadius: 10,
+          barThickness: 40
+        }]
+      },
+      options: {
+        indexAxis: 'y', // Barres horizontales
+        scales: {
+          x: {
+            beginAtZero: true,
+            ticks: { color: '#000' }
+          },
+          y: {
+            ticks: { color: '#000' }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: '#fff'
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

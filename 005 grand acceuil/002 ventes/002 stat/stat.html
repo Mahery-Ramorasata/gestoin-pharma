@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Statistiques Hebdomadaires</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0fdf4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #2e8b57;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      color: white;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    canvas {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2><i class="fas fa-chart-line"></i> Statistiques des Ventes - Semaine</h2>
+    <canvas id="chartVentes" height="300"></canvas>
+    <a href="stat.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour aux Statistiques</a>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('chartVentes').getContext('2d');
+
+    const valeurs = [12500, 14200, 8700, 9600, 18000, 21000, 4000]; // Dimanche est < 5000
+
+    // Couleur dynamique : rouge si < 5000, sinon vert
+    const couleurs = valeurs.map(val => val < 5000 ? '#cc0000' : '#006400');
+
+    const ventesSemaine = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
+        datasets: [{
+          label: 'Ventes (Ar)',
+          data: valeurs,
+          backgroundColor: couleurs
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { color: '#000' }
+          },
+          x: {
+            ticks: { color: '#000' }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: '#fff'
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

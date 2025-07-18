@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catégories Médicaments</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0fdf4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #2e8b57;
+      padding: 25px;
+      border-radius: 20px;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #fff;
+      color: #000;
+      padding: 12px 15px;
+      margin-bottom: 10px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .actions i {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .fa-edit {
+      color: #2e8b57;
+    }
+
+    .fa-trash {
+      color: red;
+    }
+
+    .add-btn {
+      display: block;
+      margin: 20px auto 10px;
+      background-color: #006400;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background-color: #228b22;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2><i class="fas fa-folder-open"></i> Catégories de Médicaments</h2>
+
+    <ul id="categorieList">
+      <!-- catégories générées par JS -->
+    </ul>
+
+    <button class="add-btn" onclick="ajouterCategorie()">
+      <i class="fas fa-plus-circle"></i> Ajouter Catégorie
+    </button>
+
+    <a href="medicaments.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour au menu Médicaments</a>
+  </div>
+
+  <script>
+    let categories = ["Antibiotique", "Antalgique", "Antipaludéen", "Vitamines"];
+
+    function afficherCategories() {
+      const list = document.getElementById("categorieList");
+      list.innerHTML = "";
+      categories.forEach((cat, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          ${cat}
+          <span class="actions">
+            <i class="fas fa-edit" onclick="modifierCategorie(${index})"></i>
+            <i class="fas fa-trash" onclick="supprimerCategorie(${index})"></i>
+          </span>
+        `;
+        list.appendChild(li);
+      });
+    }
+
+    function ajouterCategorie() {
+      const nouvelle = prompt("Entrez le nom de la nouvelle catégorie :");
+      if (nouvelle) {
+        categories.push(nouvelle);
+        afficherCategories();
+      }
+    }
+
+    function modifierCategorie(index) {
+      const modif = prompt("Modifier la catégorie :", categories[index]);
+      if (modif) {
+        categories[index] = modif;
+        afficherCategories();
+      }
+    }
+
+    function supprimerCategorie(index) {
+      if (confirm("Supprimer la catégorie \"" + categories[index] + "\" ?")) {
+        categories.splice(index, 1);
+        afficherCategories();
+      }
+    }
+
+    window.onload = afficherCategories;
+  </script>
+
+</body>
+</html>
